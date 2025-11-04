@@ -1,23 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Merry Christmas!</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Merry Christmas, Jeevan!</title>
   <style>
     body {
-      background-color: #f9f9f9;
+      background: linear-gradient(135deg, #ff0000, #008000);
+      color: #fff;
+      font-family: "Poppins", sans-serif;
       text-align: center;
-      font-family: 'Poppins', sans-serif;
-      color: #c0392b;
-      margin-top: 20%;
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
     }
-    h1 { font-size: 3em; }
-    h2 { color: #27ae60; }
+
+    h1 {
+      font-size: 3em;
+      margin-bottom: 10px;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 10px #fff, 0 0 20px gold; }
+      to { text-shadow: 0 0 20px yellow, 0 0 40px red; }
+    }
+
+    p {
+      font-size: 1.5em;
+    }
   </style>
 </head>
 <body>
   <h1>🎄 Merry Christmas, Jeevan! 🎅</h1>
-  <h2>Wishing you joy, peace, and blessings!</h2>
+  <p>May your days be merry and bright!</p>
+
+  <script>
+    // Confetti animation
+    function createConfetti() {
+      const confetti = document.createElement("div");
+      confetti.style.position = "fixed";
+      confetti.style.width = "10px";
+      confetti.style.height = "10px";
+      confetti.style.background = `hsl(${Math.random() * 360}, 100%, 50%)`;
+      confetti.style.top = "0px";
+      confetti.style.left = Math.random() * window.innerWidth + "px";
+      confetti.style.opacity = Math.random();
+      confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+      document.body.appendChild(confetti);
+      let fall = setInterval(() => {
+        confetti.style.top = parseFloat(confetti.style.top) + 3 + "px";
+        if (parseFloat(confetti.style.top) > window.innerHeight) {
+          clearInterval(fall);
+          confetti.remove();
+        }
+      }, 15);
+    }
+
+    setInterval(createConfetti, 50);
+  </script>
 </body>
 </html>
